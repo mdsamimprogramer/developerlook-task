@@ -31,7 +31,7 @@ const cases = [
 
 const Portfolio = () => {
   return (
-    <section className="py-20 lg:py-28 px-6 lg:px-12 xl:px-16 bg-[#FDF7F0] relative z-20 overflow-visible">
+    <section className="py-20 lg:py-28 px-6 lg:px-12 xl:px-16 relative z-20 overflow-visible">
       <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row gap-6 lg:gap-8 xl:gap-10 items-start">
 
         {/* Column 1: Title Block & Card 1 */}
