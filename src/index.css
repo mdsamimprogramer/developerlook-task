@@ -15,7 +15,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading font-extrabold tracking-tight text-brand-dark;
   }
 }
@@ -24,3 +29,5 @@
 .img-placeholder {
   @apply bg-gray-200 animate-pulse object-cover;
 }
+
+;

@@ -98,7 +98,7 @@ const imageWrapperVariants = {
 
 const Services = () => {
   return (
-    <section className="py-20 md:py-26 px-6 md:px-10 relative z-20 overflow-visible">
+    <section className="py-20 md:py-26 px-6 md:px-12 relative z-20 overflow-visible">
       <div className="w-full mx-auto flex flex-col gap-24 md:gap-32 lg:gap-40">
 
         {services.map((service, idx) => (

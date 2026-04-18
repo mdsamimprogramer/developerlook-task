@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   const navLinks = [
     { name: "Expertises", href: "#expertises" },
@@ -11,17 +12,46 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  // scroll logic
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            setHidden(true);
+          } else {
+            setHidden(false);
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Mobile Menu Variants
   const menuVariants = {
     initial: { y: "-100%" },
     animate: {
       y: 0,
-      transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] }
+      transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
     },
     exit: {
       y: "-100%",
-      transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
-    }
+      transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    },
   };
 
   const itemVariants = {
@@ -29,23 +59,26 @@ const Navbar = () => {
     animate: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: 0.3 + i * 0.1, duration: 0.4 }
-    })
+      transition: { delay: 0.3 + i * 0.1, duration: 0.4 },
+    }),
   };
 
   return (
-    <nav className="fixed tracking-tight w-full top-0 left-0 z-50 px-6 md:px-10 py-5 flex justify-between items-center bg-[#fdf8f1]/90 backdrop-blur-sm">
-
+    <motion.nav
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed tracking-tight w-full top-0 left-0 z-50 px-6 md:px-10 py-5 flex justify-between items-center backdrop-blur-sm"
+    >
       {/* Logo */}
       <div className="flex-shrink-0 z-[70]">
         <img
-          src="https://i.ibb.co.com/N2bQwFLW/a.jpg"
+          src="https://i.ibb.co.com/kjHRSqT/a.png"
           alt="logo"
-          className="h-8 md:h-10 w-auto"
+          className="h-10 md:h-12 w-auto"
         />
       </div>
 
-      {/* Center Menu (Desktop) */}
+      {/* Center Menu */}
       <div className="hidden md:flex items-center">
         <div className="flex gap-1 px-2 py-1 rounded-xl bg-white border border-black/5 shadow-sm">
           {navLinks.map((link) => (
@@ -56,15 +89,14 @@ const Navbar = () => {
               initial="initial"
               whileHover="hover"
             >
-              <span className="relative z-10 transition-colors duration-300">
-                {link.name}
-              </span>
+              <span className="relative z-10">{link.name}</span>
+
               <motion.div
                 variants={{
                   initial: { y: "100%" },
-                  hover: { y: 0 }
+                  hover: { y: 0 },
                 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.4 }}
                 className="absolute inset-0 bg-black z-20 flex items-center justify-center"
               >
                 <span className="text-red-500 font-extrabold uppercase tracking-widest text-[13px]">
@@ -76,7 +108,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Right Button (Desktop) */}
+      {/* Right Button */}
       <div className="hidden md:block">
         <motion.a
           href="#contact"
@@ -84,13 +116,11 @@ const Navbar = () => {
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           className="bg-[#f395d8] px-2 py-3.5 rounded-xl text-[15px] font-black text-black inline-block shadow-sm"
         >
-          Get Results <span className="bg-white px-2 py-2 rounded-xl ml-1">
-            🔥
-          </span>
+          Get Results <span className="bg-white px-2 py-2 rounded-xl ml-1">🔥</span>
         </motion.a>
       </div>
 
-      {/* Mobile Toggle Button */}
+      {/* Mobile Toggle */}
       <button
         onClick={() => setOpen(!open)}
         className="md:hidden z-[70] bg-white w-12 h-12 flex items-center justify-center rounded-2xl border border-black/5 shadow-sm"
@@ -98,7 +128,7 @@ const Navbar = () => {
         <span className="text-xl">{open ? "✕" : "☰"}</span>
       </button>
 
-      {/* Mobile Menu with Animation */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -106,7 +136,7 @@ const Navbar = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="fixed inset-0 w-full h-screen bg-[#f395d8] flex flex-col rounded-xl items-center justify-center gap-4 md:hidden z-[60]"
+            className="fixed inset-0 w-full h-screen bg-[#fcadf7ff] flex flex-col rounded-xl items-center justify-center gap-4 md:hidden z-[60]"
           >
             {navLinks.map((link, i) => (
               <motion.a
@@ -121,7 +151,6 @@ const Navbar = () => {
               </motion.a>
             ))}
 
-            {/* Mobile Bottom CTA Button */}
             <motion.a
               href="#contact"
               onClick={() => setOpen(false)}
@@ -130,15 +159,12 @@ const Navbar = () => {
               transition={{ delay: 0.7 }}
               className="absolute bottom-12 bg-[#1a1a1a] text-white px-2.5 py-2.5 rounded-2xl text-xl font-bold flex items-center gap-2"
             >
-              Get Results
-              <span className="bg-white px-2 py-2 rounded-xl ml-1">
-                🔥
-              </span>
+              Get Results <span className="bg-white px-2 py-2 rounded-xl">🔥</span>
             </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 

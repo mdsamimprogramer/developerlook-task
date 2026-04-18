@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative pt-20 pb-20 px-6 md:px-10 overflow-hidden min-h-screen">
+    <section className="relative pt-20 md:pb-16 pb-10 px-6 md:px-10 overflow-hidden min-h-screen">
 
       {/* 1. Header Text Container */}
       <div className="w-full flex flex-col z-10 relative mt-10 tracking-tighter font-sans">
@@ -57,7 +57,7 @@ const Hero = () => {
           className="w-[260px] md:w-[320px] aspect-[4/5] bg-white rounded-[2.5rem] overflow-hidden shadow-lg relative md:rotate-[-1deg] z-20 md:-mr-12"
         >
           <video
-            src="https://videos.pexels.com/video-files/2103099/2103099-hd_1920_1080_30fps.mp4"
+            src="https://www.pexels.com/download/video/8738293/"
             autoPlay
             loop
             muted
@@ -91,7 +91,7 @@ const Hero = () => {
           className="w-[260px] md:w-[320px] aspect-[4/5] bg-white rounded-[2.5rem] overflow-hidden shadow-lg relative md:rotate-[6deg] z-40 hidden sm:block"
         >
           <video
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            src="https://www.pexels.com/download/video/18447539/"
             className="w-full h-full object-cover"
             autoPlay
             loop

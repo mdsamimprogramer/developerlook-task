@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Intro = () => {
   return (
     <section className="py-14 md:py-18 lg:py-24 overflow-hidden relative z-30">
-      <div className="px-4 sm:px-6 md:px-10 lg:px-16">
+      <div className="px-6 md:px-10">
 
         {/* Heading */}
         <motion.div
@@ -28,7 +28,7 @@ const Intro = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="w-full sm:w-[280px] h-[320px] sm:h-[340px] md:h-[350px] lg:w-[320px] lg:h-[400px] rounded-2xl md:rounded-[1.5rem] overflow-hidden shrink-0 bg-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="w-full sm:w-[280px] h-[320px] sm:h-[340px] md:h-[350px] rounded-2xl md:rounded-[1.5rem] overflow-hidden shrink-0 bg-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             <img
               src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"

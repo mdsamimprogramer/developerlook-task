@@ -24,7 +24,7 @@ const Brands = () => {
   };
 
   return (
-    <section className="relative py-20 bg-brand-bg overflow-hidden">
+    <section className="relative py-20 overflow-hidden">
 
       {/* Heading */}
       <div className="max-w-7xl px-6 lg:px-12 mb-12">
